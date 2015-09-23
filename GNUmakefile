@@ -3,7 +3,7 @@ CFLAGS+= -O3 -Wall -Wextra -fno-strict-aliasing -Wno-unused-result
 CPPFLAGS+= -MMD -MP
 LDLIBS+= -lm
 LDFLAGS+=
-ALL = fasta2DB DB2fasta quiva2DB DB2quiva DBsplit DBdust Catrack DBshow DBstats DBrm simulator \
+ALL = fasta2DB DB2fasta quiva2DB DB2quiva DBsplit DBdust Catrack DBshow DBstats DBrm simulator DB4Awesome\
       fasta2DAM DAM2fasta
 vpath %.c ${THISDIR}
 

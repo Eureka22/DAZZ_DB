@@ -1,6 +1,6 @@
 CFLAGS = -O3 -Wall -Wextra -fno-strict-aliasing -Wno-unused-result
 
-ALL = fasta2DB DB2fasta quiva2DB DB2quiva DBsplit DBdust Catrack DBshow DBstats DBrm simulator \
+ALL = fasta2DB DB2fasta quiva2DB DB2quiva DBsplit DBdust Catrack DBshow DBstats DBrm simulator DB4Awesome\
       fasta2DAM DAM2fasta
 
 all: $(ALL)
@@ -28,6 +28,9 @@ Catrack: Catrack.c DB.c DB.h QV.c QV.h
 
 DBshow: DBshow.c DB.c DB.h QV.c QV.h
 	gcc $(CFLAGS) -o DBshow DBshow.c DB.c QV.c -lm
+
+DB4Awesome: DB4Awesome.c DB.c DB.h QV.c QV.h
+	gcc $(CFLAGS) -o DB4Awesome DB4Awesome.c DB.c QV.c -lm
 
 DBstats: DBstats.c DB.c DB.h QV.c QV.h
 	gcc $(CFLAGS) -o DBstats DBstats.c DB.c QV.c -lm
