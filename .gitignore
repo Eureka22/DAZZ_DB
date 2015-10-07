@@ -11,6 +11,7 @@
 /fasta2DB
 /quiva2DB
 /simulator
+DB4Awesome
 /*.d
 /*.o
 /*.a
