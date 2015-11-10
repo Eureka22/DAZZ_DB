@@ -80,7 +80,6 @@ int main(int argc, char *argv[])
   int        ALL;
   int        CUTOFF;
   int        SIZE;
-  int        SIZE_UNIT_LG;
 
   { int   i, j, k;
     int   flags[128];
@@ -90,7 +89,6 @@ int main(int argc, char *argv[])
 
     CUTOFF = 0;
     SIZE   = 200;
-    SIZE_UNIT_LG = 20;
 
     j = 1;
     for (i = 1; i < argc; i++)
@@ -104,9 +102,6 @@ int main(int argc, char *argv[])
             break;
           case 's':
             ARG_POSITIVE(SIZE,"Block size")
-            break;
-          case 'u':
-            ARG_POSITIVE(SIZE_UNIT_LG,"Block size unit (lg2, default=20)")
             break;
         }
       else
@@ -187,7 +182,7 @@ int main(int argc, char *argv[])
     int        nblock, ireads, treads, rlen, fno;
     int        i;
 
-    size = SIZE*(1LL << SIZE_UNIT_LG);
+    size = SIZE*1000000ll;
 
     nblock = 0;
     totlen = 0;

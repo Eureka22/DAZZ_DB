@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
 
   int            reps, *pts;
   int            input_pts;
-  File_Iterator *iter = 0;
+  File_Iterator *iter = NULL;
   FILE          *input;
 
   int         TRIM, UPPER;
@@ -233,14 +233,16 @@ int main(int argc, char *argv[])
 
   //  Check tracks and load tracks for untrimmed DB
 
-  { int i, status;
+  { int i, status, kind;
 
     for (i = 0; i < MTOP; i++)
-      { status = Check_Track(db,MASK[i]);
+      { status = Check_Track(db,MASK[i],&kind);
         if (status == -2)
           printf("%s: Warning: -m%s option given but no track found.\n",Prog_Name,MASK[i]);
         else if (status == -1)
           printf("%s: Warning: %s track not sync'd with db.\n",Prog_Name,MASK[i]);
+        else if (kind != MASK_TRACK)
+          printf("%s: Warning: %s track is not a mask track.\n",Prog_Name,MASK[i]);
         else if (status == 0)
           Load_Track(db,MASK[i]);
         else if (status == 1 && !TRIM)
@@ -321,17 +323,17 @@ int main(int argc, char *argv[])
     }
 
   if (TRIM)
-    { int i, status;
+    { int i, status, kind;
 
       Trim_DB(db);
 
       //  Load tracks for trimmed DB
 
       for (i = 0; i < MTOP; i++)
-        { status = Check_Track(db,MASK[i]);
+        { status = Check_Track(db,MASK[i],&kind);
           if (status < 0)
             continue;
-          else if (status == 1)
+          else if (status == 1 && kind == MASK_TRACK)
             Load_Track(db,MASK[i]);
         }
     }
